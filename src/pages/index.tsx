@@ -52,12 +52,15 @@ const Home: NextPage = () => {
           />
           <button
             className="btn-accent btn-lg btn text-neutral"
-            disabled={!isUrlValid}
+            disabled={!isUrlValid || instagramResult.isFetching}
             onClick={() => void instagramResult.refetch()}
           >
             GET the image!!
           </button>
         </div>
+        {instagramResult.isFetching && (
+          <progress className="progress w-[50%] min-w-[25rem]"></progress>
+        )}
       </main>
     </>
   );
