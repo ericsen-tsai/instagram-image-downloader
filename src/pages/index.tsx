@@ -15,9 +15,17 @@ const urlRegex = new RegExp(
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState<string>("");
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const instagramResult = api.instagram.imageFetcher.useQuery(
+    { url },
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const isUrlValid = !url || urlRegex.test(url);
+
+  console.log(instagramResult.data);
 
   return (
     <>
@@ -45,6 +53,7 @@ const Home: NextPage = () => {
           <button
             className="btn-accent btn-lg btn text-neutral"
             disabled={!isUrlValid}
+            onClick={() => void instagramResult.refetch()}
           >
             GET the image!!
           </button>
