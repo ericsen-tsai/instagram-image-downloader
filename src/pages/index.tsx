@@ -1,6 +1,8 @@
 import { type ChangeEvent, useState } from "react";
 import { type NextPage } from "next";
+import Image from "next/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { api } from "@/utils/api";
 
@@ -25,7 +27,7 @@ const Home: NextPage = () => {
 
   const isUrlValid = !url || urlRegex.test(url);
 
-  console.log(instagramResult.data);
+  const router = useRouter();
 
   return (
     <>
@@ -38,28 +40,60 @@ const Home: NextPage = () => {
         <h1 className="mb-5 text-center text-[4.2rem] font-bold text-neutral md:text-[6rem]">
           IG Image Downloader
         </h1>
-        <div className="align-center flex w-[50%] min-w-[25rem] flex-wrap justify-center gap-3 text-[3.2rem]">
-          <input
-            type="text"
-            placeholder="Type here"
-            className={`input-bordered input input-lg w-full max-w-md ${
-              isUrlValid ? "input-neutral" : "input-error"
-            }`}
-            value={url}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setUrl(e.target.value)
-            }
-          />
-          <button
-            className="btn-accent btn-lg btn text-neutral"
-            disabled={!isUrlValid || instagramResult.isFetching}
-            onClick={() => void instagramResult.refetch()}
-          >
-            GET the image!!
-          </button>
-        </div>
-        {instagramResult.isFetching && (
-          <progress className="progress w-[50%] min-w-[25rem]"></progress>
+        {(!instagramResult.isFetched || instagramResult.isError) && (
+          <div className="flex w-1/2 min-w-[25rem] flex-wrap items-center justify-center gap-3 text-[3.2rem]">
+            <div className="relative flex items-center justify-center">
+              <input
+                type="text"
+                placeholder="Type here"
+                className={`input-bordered input input-lg w-full max-w-md ${
+                  isUrlValid ? "input-neutral" : "input-error"
+                }`}
+                value={url}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setUrl(e.target.value)
+                }
+                disabled={instagramResult.isFetching}
+              />
+              {instagramResult.isFetching && (
+                <progress className="progress absolute bottom-[-1px] left-1/2 h-[3px] w-[85%] -translate-x-1/2"></progress>
+              )}
+            </div>
+            <button
+              className="btn-accent btn-lg btn text-neutral"
+              disabled={!isUrlValid || instagramResult.isFetching}
+              onClick={() => void instagramResult.refetch()}
+            >
+              GET the image!!
+            </button>
+          </div>
+        )}
+        {instagramResult.isFetched && !!instagramResult.data?.imgSrc && (
+          <>
+            <div className="relative mt-10 h-[30rem] w-full">
+              <Image
+                src={instagramResult.data?.imgSrc}
+                alt="the image you want"
+                fill
+                style={{ objectFit: "contain" }}
+              ></Image>
+            </div>
+            <div className="mt-3 flex items-center gap-3">
+              <a
+                className="btn-accent btn-lg btn"
+                href={instagramResult.data.imgSrc}
+                download="image.png"
+              >
+                Download
+              </a>
+              <button
+                className="btn-secondary btn-lg btn"
+                onClick={() => void router.reload()}
+              >
+                Back
+              </button>
+            </div>
+          </>
         )}
       </main>
     </>
