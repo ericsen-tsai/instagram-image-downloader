@@ -29,6 +29,22 @@ const Home: NextPage = () => {
 
   const router = useRouter();
 
+  const [imageBlobUrl, setImageBlobUrl] = useState<string | null>(null);
+
+  const handleDownloadClick = async () => {
+    if (!instagramResult.data?.imgSrc) return;
+    const response = await fetch(instagramResult.data?.imgSrc);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    setImageBlobUrl(blobUrl);
+  };
+
+  const handleRevokeClick = () => {
+    if (!imageBlobUrl) return;
+    URL.revokeObjectURL(imageBlobUrl);
+    setImageBlobUrl(null);
+  };
+
   return (
     <>
       <Head>
@@ -83,8 +99,9 @@ const Home: NextPage = () => {
                 className="btn-accent btn-lg btn"
                 href={instagramResult.data.imgSrc}
                 download="image.png"
+                target="_blank"
               >
-                Download
+                Open image in new window
               </a>
               <button
                 className="btn-secondary btn-lg btn"
