@@ -8,9 +8,10 @@ export const instagramRouter = createTRPCRouter({
   imageFetcher: publicProcedure
     .input(z.object({ url: z.string().url() }))
     .query(async ({ input }) => {
-      const imgSRCs = await getIGPostImgSRCs({ postUrl: input.url });
+      const res = await getIGPostImgSRCs({ postUrl: input.url });
+      const imgSRCs = res.urls;
       if (imgSRCs.length === 0 || !imgSRCs[0]) {
-        return { error: "I just cannot" };
+        return { error: "I just cannot", raw: res.raw };
       }
       return {
         imgSrc: imgSRCs[0],

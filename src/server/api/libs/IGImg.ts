@@ -42,12 +42,13 @@ const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
     }
   );
   const data = (await res.json()) as IGResponse;
-  console.log(data);
-  return (
-    data?.graphql?.shortcode_media.display_resources.map(
-      (resource) => resource.src
-    ) || []
-  );
+  return {
+    urls:
+      data?.graphql?.shortcode_media.display_resources.map(
+        (resource) => resource.src
+      ) || [],
+    raw: data,
+  };
 };
 
 export { crawlInstagramToGetImgSRCs, getIGPostImgSRCs };
