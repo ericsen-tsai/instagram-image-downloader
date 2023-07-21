@@ -22,13 +22,17 @@ const crawlInstagramToGetImgSRCs = async ({ postUrl }: { postUrl: string }) => {
 };
 
 type IGResponse = {
-  graphql: {
-    shortcode_media: {
-      display_resources: {
-        src: string;
-      }[];
-    };
-  };
+  items: {
+    carousel_media: {
+      image_versions2: {
+        candidates: {
+          url: string;
+          width: number;
+          height: number;
+        }[];
+      };
+    }[];
+  }[];
 };
 
 const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
@@ -37,17 +41,18 @@ const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
     url.origin + url.pathname + "?" + env.SECRET_QUERY_STRING,
     {
       headers: {
-        "Content-Type": "application/json",
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        Cookie: env.SECRET_COOKIE,
       },
     }
   );
   const data = (await res.json()) as IGResponse;
   return {
-    urls:
-      data?.graphql?.shortcode_media.display_resources.map(
-        (resource) => resource.src
-      ) || [],
-    raw: data,
+    imgs:
+      data.items[0]?.carousel_media.map((media) => ({
+        ...media.image_versions2.candidates[0],
+      })) || [],
   };
 };
 

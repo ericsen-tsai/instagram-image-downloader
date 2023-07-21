@@ -20,7 +20,7 @@ export default async function handler(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const buffer = Buffer.from(response.data, "binary");
       res.setHeader("Content-Type", "image/jpeg");
-      res.setHeader("Content-Disposition", 'attachment; filename="image.jpg"');
+      res.setHeader("Content-Disposition", 'attachment; filename="image.jpeg"');
       res.send(buffer);
     })
     .catch((err) => {
