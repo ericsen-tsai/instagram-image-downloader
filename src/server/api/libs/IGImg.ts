@@ -23,7 +23,7 @@ const crawlInstagramToGetImgSRCs = async ({ postUrl }: { postUrl: string }) => {
 
 type IGResponse = {
   items: {
-    carousel_media: {
+    carousel_media?: {
       image_versions2: {
         candidates: {
           url: string;
@@ -32,6 +32,13 @@ type IGResponse = {
         }[];
       };
     }[];
+    image_versions2?: {
+      candidates: {
+        url: string;
+        width: number;
+        height: number;
+      }[];
+    };
   }[];
 };
 
@@ -50,9 +57,12 @@ const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
   const data = (await res.json()) as IGResponse;
   return {
     imgs:
-      data.items[0]?.carousel_media.map((media) => ({
+      data.items[0]?.carousel_media?.map((media) => ({
         ...media.image_versions2.candidates[0],
-      })) || [],
+      })) ||
+      (data.items[0]?.image_versions2
+        ? [data.items[0]?.image_versions2?.candidates[0]]
+        : []),
   };
 };
 
