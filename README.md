@@ -4,7 +4,7 @@ An IG Image Downloader made with daisyUI and Nextjs.
 
 ## Live Demo
 
-[Here](https://easysplit.erichandsen.dev/)
+[Here](https://instagram-image-downloader-vert.vercel.app/)
 
 ## Screenshots
 
