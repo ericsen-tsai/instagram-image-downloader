@@ -1,28 +1,66 @@
-# Create T3 App
+# LightSplit Clone Frontend
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A full responsive LightSplit clone made with TailwindCSS and Nextjs.
 
-## What's next? How do I make an app with this?
+## Live Demo
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+[Here](https://easysplit.erichandsen.dev/)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Screenshots
+
+![Input](./public/input.png)
+![Download](./public/download.png)
+
+## Tech Stack
 
 - [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
+- [daisyUI](https://daisyui.com/)
 
-## Learn More
+## Features
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- Instagram Image Download
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Getting Started
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### Prerequisites
 
-## How do I deploy this?
+- node >=18.12.1
+- pnpm 1.22.19
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/ericsen-tsai/instagram-image-downloader.git
+
+# Navigate into the project directory
+cd instagram-image-downloader
+
+# Install dependencies
+yarn
+
+# Start the development server
+yarn dev
+```
+
+### Build
+
+```bash
+# Build the project
+yarn build
+```
+
+### Deployment
+
+This project is continuously deployed on [Vercel](https://vercel.com/).
+
+## Contact
+
+For more information or for any queries, feel free to reach out to me:
+
+- [LinkedIn](https://www.linkedin.com/in/ericsen-tsai-a00948236/)
+- [GitHub](https://github.com/ericsen-tsai)
+- [GitLab](https://gitlab.com/ericsentsai)
+- Email: <bommer95175@gmail.com>
