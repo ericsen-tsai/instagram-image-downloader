@@ -64,3 +64,7 @@ For more information or for any queries, feel free to reach out to me:
 - [GitHub](https://github.com/ericsen-tsai)
 - [GitLab](https://gitlab.com/ericsentsai)
 - Email: <bommer95175@gmail.com>
+
+## Acknowledgments
+
+Immense appreciation for my friend [Ben Chang](https://www.linkedin.com/in/ben-chang-2a5a93185/), an exceptional Web Crawling Specialist, who offered a clue that helped me unravel the mystery of Instagram.
