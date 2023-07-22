@@ -1,6 +1,6 @@
-# LightSplit Clone Frontend
+# Instagram Image Downloader
 
-A full responsive LightSplit clone made with TailwindCSS and Nextjs.
+An IG Image Downloader made with daisyUI and Nextjs.
 
 ## Live Demo
 
