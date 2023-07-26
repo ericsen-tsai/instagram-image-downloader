@@ -16,7 +16,7 @@ An IG Image Downloader made with daisyUI and Nextjs.
 - [Next.js](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
-- [daisyUI](https://daisyui.com/)
+- [DaisyUI](https://daisyui.com/)
 
 ## Features
 
