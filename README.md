@@ -27,7 +27,7 @@ An IG Image Downloader made with daisyUI and Nextjs.
 ### Prerequisites
 
 - node >=18.12.1
-- pnpm 1.22.19
+- yarn 1.22.19
 
 ### Installation
 
